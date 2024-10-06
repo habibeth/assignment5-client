@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button, Col, Flex, Form, Input } from "antd";
 import { Controller, FieldValues } from "react-hook-form";
 import { Link } from "react-router-dom";
@@ -27,19 +28,18 @@ const Register = () => {
                 ...data
             }
 
-            console.log(data)
 
             const formData = new FormData();
             formData.append('data', JSON.stringify(userData));
             formData.append('file', data?.profileImage);
 
-            const res = await createUser(formData);
+            const res = await createUser(formData).unwrap();
 
-            if (res.data.success) {
-                toast.success(res.data.message, { id: toastId })
+            if (res.success) {
+                toast.success(res.message, { id: toastId })
             }
-        } catch (error) {
-            toast.error("Something went to Wrong", { id: toastId })
+        } catch (error: any) {
+            toast.error(error?.data.message, { id: toastId })
         }
     }
     return (
