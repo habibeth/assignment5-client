@@ -16,17 +16,6 @@ const AddRoom = () => {
         label: item
     }))
 
-    const defaultValues = {
-        name: "Conference Room 10",
-        roomNo: 501,
-        floorNo: 5,
-        capacity: 39,
-        pricePerSlot: 365,
-        amenities: ["Whiteboard"],
-        isDeleted: false
-    }
-
-
     const onSubmit = async (data: FieldValues) => {
         const toastId = toast.loading("Loading Progress!")
         try {
@@ -58,7 +47,7 @@ const AddRoom = () => {
                 <div style={{ textAlign: 'center', margin: '50px 0' }}>
                     <h2>Add Room</h2>
                 </div>
-                <MRForm onSubmit={onSubmit} defaultValues={defaultValues}>
+                <MRForm onSubmit={onSubmit}>
                     <MRInput type="text" name="name" label={"Room Name: "} />
                     <MRInput type="text" name="roomNo" label={"Room Number: "} />
                     <MRInput type="text" name="floorNo" label={"Floor No: "} />

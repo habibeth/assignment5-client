@@ -12,13 +12,6 @@ import { useCreateUserMutation } from "../../redux/feature/auth/authApi";
 const Register = () => {
     const [createUser] = useCreateUserMutation();
 
-    const defaultValues = {
-        name: "Ahsan Habib",
-        email: "habibstk97@gmail.com",
-        password: "123456",
-        phone: "1234567890",
-        address: "123 Main Street, City, Country"
-    }
 
     const onSubmit = async (data: FieldValues) => {
         // console.log(data)
@@ -49,7 +42,7 @@ const Register = () => {
                     <h2>Register With Meet Mate</h2>
                     <p style={{ margin: "20px 0" }}>Welcome Our Meet Mate! Let&lsquo;s Register Now</p>
                 </div>
-                <MRForm onSubmit={onSubmit} defaultValues={defaultValues}>
+                <MRForm onSubmit={onSubmit} >
                     <MRInput type="text" name="name" label={"Name: "} />
                     <MRInput type="text" name="email" label={"Email: "} />
                     <MRInput type="password" name="password" label={"Password: "} />

@@ -16,10 +16,6 @@ const Login = () => {
     const dispatch = useAppDispatch();
 
     const [login] = useLoginMutation();
-    const defaultValues = {
-        email: "habibstk97@gmail.com",
-        password: "123456"
-    }
 
     const onSubmit = async (data: FieldValues) => {
         const toastId = toast.loading("Loading Progress!")
@@ -54,7 +50,7 @@ const Login = () => {
                     <h2>Login With Meet Mate</h2>
                     <p style={{ margin: "20px 0" }}>Welcome Back! Let&lsquo;s Get Started</p>
                 </div>
-                <MRForm onSubmit={onSubmit} defaultValues={defaultValues}>
+                <MRForm onSubmit={onSubmit}>
                     <MRInput type="text" name="email" label={"Email: "} />
                     <MRInput type="password" name="password" label={"Password: "} />
                     <Button htmlType="submit" type="primary" block>Login</Button>
