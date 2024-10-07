@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button, Col, Flex, Form, Input } from "antd";
 import { Controller, FieldValues } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import MRForm from "../../components/Form/MRForm";
 import MRInput from "../../components/Form/MRInput";
 import { toast } from "sonner";
@@ -10,6 +10,7 @@ import { useCreateUserMutation } from "../../redux/feature/auth/authApi";
 
 
 const Register = () => {
+    const navigate = useNavigate()
     const [createUser] = useCreateUserMutation();
 
 
@@ -30,6 +31,7 @@ const Register = () => {
 
             if (res.success) {
                 toast.success(res.message, { id: toastId })
+                navigate('/login');
             }
         } catch (error: any) {
             toast.error(error?.data.message, { id: toastId })
