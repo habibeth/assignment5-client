@@ -41,13 +41,13 @@ const AddRoom = () => {
             formData.append('data', JSON.stringify(roomData));
             formData.append('file', data?.image);
 
-            const res = await createRoom(formData);
-            if (res.data.success) {
-                toast.success(res.data.message, { id: toastId });
+            const res = await createRoom(formData).unwrap();
+            if (res.success) {
+                toast.success(res.message, { id: toastId });
                 navigate('/admin/allRoomsManagement')
             }
-        } catch (error) {
-            toast.error("Something went to Wrong", { id: toastId })
+        } catch (error: any) {
+            toast.error(error?.data.message, { id: toastId })
         }
     }
 

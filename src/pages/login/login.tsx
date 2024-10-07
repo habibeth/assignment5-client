@@ -28,17 +28,22 @@ const Login = () => {
                 email: data.email,
                 password: data.password
             }
-            const res = await login(userInfo);
-            const token = res.data.accessToken
+            const res = await login(userInfo).unwrap();
+            const token = res.accessToken
             const user = verifyToken(token) as TUser
             dispatch(setUser({ user: user, token: token }))
-            toast.success("User Login Successfully!", { id: toastId })
+
+            if (res.success) {
+                toast.success(res.message, { id: toastId })
+            }
 
             if (user.role) {
                 return navigate(`/`)
             }
 
-        } catch (error) {
+
+
+        } catch (error: any) {
             toast.error("Something went to Wrong", { id: toastId })
         }
     }

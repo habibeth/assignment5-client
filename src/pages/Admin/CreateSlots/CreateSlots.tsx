@@ -32,13 +32,13 @@ const CreateSlots = () => {
                 endTime: moment(new Date(data.endTime)).format('HH:mm'),
             }
 
-            const res = await createSlots(slotsData);
-            if (res.data.success) {
-                toast.success(res.data.message, { id: toastId });
+            const res = await createSlots(slotsData).unwrap();
+            if (res.success) {
+                toast.success(res.message, { id: toastId });
                 navigate('/admin/getAllSlots')
             }
-        } catch (error) {
-            toast.error("Something went to Wrong", { id: toastId })
+        } catch (error: any) {
+            toast.error(error?.data.message, { id: toastId })
         }
     }
 
